@@ -1,0 +1,1 @@
+"venv-PAQ/Scripts/activate.bat" & py -m App.py
