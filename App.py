@@ -39,7 +39,7 @@ def App(inputDir, targetImg, userChoseForFinalWidth):
         # select
         def selectAndCrop():
             resultWidthByRatio9 = (heightOfImg * 16) / 9
-            isRatio16By9 = widthOfImg - 100 <= resultWidthByRatio9  <= widthOfImg + 100
+            isRatio16By9 = widthOfImg - 50 <= resultWidthByRatio9  <= widthOfImg + 50
 
             start_ruler_units = ps.app.preferences.rulerUnits
             if start_ruler_units is not ps.Units.Pixels:
@@ -60,7 +60,8 @@ def App(inputDir, targetImg, userChoseForFinalWidth):
                     # offsetWidth = widthWithRatio16By9 / 16
 
                     return (
-                        ps.active_document.crop(bounds=[0, offsetHeight, widthOfImg, heightWithRatio16By9 + offsetHeight], width=imgFinalWidth, height=imgFinalHeight)
+                        # ps.active_document.crop(bounds=[0, offsetHeight, widthOfImg, heightWithRatio16By9 + offsetHeight], width=imgFinalWidth, height=imgFinalHeight)
+                        ps.active_document.crop(bounds=[0, 0, widthOfImg, heightWithRatio16By9], width=imgFinalWidth, height=imgFinalHeight)
                     )
                     
             else:
