@@ -39,7 +39,7 @@ def App(inputDir, targetImg, userChoseForFinalWidth):
         # select
         def selectAndCrop():
             resultWidthByRatio9 = (heightOfImg * 16) / 9
-            isRatio16By9 = widthOfImg - 50 <= resultWidthByRatio9  <= widthOfImg + 50
+            isRatio16By9 = widthOfImg - 100 <= resultWidthByRatio9  <= widthOfImg + 100
 
             start_ruler_units = ps.app.preferences.rulerUnits
             if start_ruler_units is not ps.Units.Pixels:
@@ -81,24 +81,28 @@ def App(inputDir, targetImg, userChoseForFinalWidth):
         ps.active_document.saveAs(dir, ps.JPEGSaveOptions())
 
 
-inputDir = str(input('\nEnter the directory: \n')).replace("\\", '/')
-userChoseForFinalWidth = int(input('\n1:Background 2:Thumbnail+Question 3:QuizOption : '))
 
-imgFiles = os.listdir(inputDir)
-totalCountImgFiles = len(imgFiles) - 1  # minus 1 for output file
-imgCounter = 1
 
-print('Setup the program...')
-try:
-    for targetImg in imgFiles:
-        if '.' in targetImg:  # if file skip
-            App(inputDir, targetImg, userChoseForFinalWidth)
+while(True):
+    print('Setup the program...')
 
-        print(f'{imgCounter} / {totalCountImgFiles} Done ✅', end="\r")
-        imgCounter += 1
-    print('-------------------------- Complete ✅ ----------------------------')
+    inputDir = str(input('\nEnter the directory: \n')).replace("\\", '/')
+    userChoseForFinalWidth = int(input('\n1:Background 2:Thumbnail+Question 3:QuizOption : '))
 
-except Exception as e:
-    print('There is not image in this direction \nPlease try again!')
+    imgFiles = os.listdir(inputDir)
+    totalCountImgFiles = len(imgFiles) - 1  # minus 1 for output file
+    imgCounter = 1
 
-input('Press Enter To Exit...')
+    try:
+        for targetImg in imgFiles:
+            if '.' in targetImg:  # if file skip
+                App(inputDir, targetImg, userChoseForFinalWidth)
+
+            print(f'{imgCounter} / {totalCountImgFiles} Done ✅', end="\r")
+            imgCounter += 1
+        print('-------------------------- Complete ✅ ----------------------------')
+
+    except Exception as e:
+        print(f'{e} \nOr there is not image in this direction \nPlease try again!')
+
+    input('Press Enter To Continue...\n')
