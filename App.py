@@ -48,9 +48,10 @@ def App(inputDir, targetImg, userChoseForFinalWidth):
             if userChoseForFinalWidth != 3:
                 if isRatio16By9:
                     # print('16:9')
-                    return (
-                        ps.active_document.crop(bounds=[0, 0, widthOfImg, heightOfImg], width=imgFinalWidth, height=imgFinalHeight)
-                    )
+                    # return (
+                    #     ps.active_document.crop(bounds=[0, 0, widthOfImg, heightOfImg], width=imgFinalWidth, height=imgFinalHeight)
+                    # )
+                    return None
 
                 else:
                     # print('un16:9')
