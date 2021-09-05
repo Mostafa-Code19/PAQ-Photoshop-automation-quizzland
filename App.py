@@ -79,9 +79,11 @@ def App(inputDir, targetImg, userChoseForFinalWidth):
         # save
         saveDirection = inputDir + '/output'
         dir = os.path.join(saveDirection, str(time.time()))
-        ps.active_document.saveAs(dir, ps.JPEGSaveOptions())
 
-
+        x = ps.JPEGSaveOptions()
+        x.formatOptions = 2
+        x.quality = 8
+        ps.active_document.saveAs(dir, x)
 
 
 while(True):
